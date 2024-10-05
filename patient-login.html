@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+async function login(event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  console.log('Username:', username); // Log the username for debugging
+  console.log('Password:', password); // Log the password (consider removing this in production)
+
+  try {
+    const response = await fetch('https://efub6po1y2.execute-api.us-east-2.amazonaws.com/UserPassTest/getUserPass', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    });
+
+    const messageElement = document.getElementById('message');
+    
+    // Log the entire response object
+    console.log('Response:', response); // Log the response object
+
+   // const data = await response.json(); // Parse the response data
+    //console.log('Response Data:', data); // Log the parsed response data
+
+    console.log('Response OK:', response.ok); // Log whether the response is okay (200-299)
+
+
+    // Check specifically for status code 200
+    if (response.status === 200) {
+    messageElement.textContent = 'Login successful!';
+    messageElement.style.color = 'green';
+    // Redirect to patient-dashboard.html
+    // window.location.href = 'patient-dashboard.html';
+    } else if (response.status === 401) {
+        const responseBody = await response.json(); // Get response body
+        console.log('Response Body:', responseBody); // Log the response body
+        messageElement.textContent = 'Login failed: ' + responseBody; // Display the body message
+        messageElement.style.color = 'red';
+    } else {
+        messageElement.textContent = 'An unexpected error occurred.';
+        messageElement.style.color = 'red';
+    }
+
+} catch (error) {
+    console.error('Error:', error);
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = 'An error occurred during login.';
+    messageElement.style.color = 'red';
+}
+}
+  </script>
+</head>
+<body>
+
+   <!-- Login Form -->
+   <div class="login-form">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button> <!-- Use type="submit" -->
+    </form>
+    <div id="message"></div> <!-- Element for displaying messages -->
+   </div>
+
+   <script>
+     // Attach the login function to the form submission event
+     document.getElementById('loginForm').addEventListener('submit', login);
+   </script>
+
+</body>
+</html>

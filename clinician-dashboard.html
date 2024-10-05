@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clinician Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Clinician Dashboard</h1>
+    
+    <h2>List of Patients</h2>
+    <table class="patient-table">
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>ID Number</th>
+        <th>Last Update</th>
+        <th>Dashboard</th>
+      </tr>
+      <!-- Example patient data, replace with actual data -->
+      <tr>
+        <td>Doe</td>
+        <td>John</td>
+        <td>12345</td>
+        <td>2024-04-10 10:00 AM</td>
+        <td>
+          <div class="portal">
+            <a href="patient-dashboard.html" class="button">View</a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Smith</td>
+        <td>John</td>
+        <td>12346</td>
+        <td>2024-04-10 10:23 AM</td>
+        <td>
+          <div class="portal">
+            <a href="patient-dashboard.html" class="button">View</a>
+          </div>
+        </td>
+      </tr>
+      <!-- Additional rows for more patients -->
+    </table>
+    
+    <h2>Device Status</h2>
+    <p class="device-status">
+      No patients' devices are offline.
+    </p>
+  </div>
+</body>
+</html>
