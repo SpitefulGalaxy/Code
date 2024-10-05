@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% block content %}
+    <!-- Navigation bar with buttons aligned to the right -->
+    <div class="navbar">
+        <a href="{{ url_for('software') }}">Software</a>
+        <a href="{{ url_for('device_guide') }}">Help</a>
+    </div>
+
+    <div class="background"></div>
+        <img src="{{ url_for('static', filename='images/footBackground2.jpg') }}" alt="ITW Assessment Device" class="bg-image">
+        <h1 class="title">Smart Stride: Toe Walking Rehab</h1>
+    </div>
+
+    <p class="paragraph">The ITW Assessment Device is a novel device made to revolutionize the rehabilitation process for
+        individuals with Idiopathic Toe Walking (ITW), a condition characterized by abnormal gait
+        patterns. The device continuously monitors muscle activation and movement by integrating
+        motion capture technology, electromyography (EMG), and predictive algorithms, allowing for
+        personalized and remote assessment of patient progress. The project's technical approach
+        involves baseline data collection, sensor integration, data analysis using machine learning
+        techniques, and developing a web application for clinician access. Through collaborative efforts
+        and interdisciplinary expertise, the team aims to address the limitations of current rehabilitation
+        methods and pave the way for more effective and accessible treatment options for ITW patients.</p>
+
+    <div class="rectangle"></div>
+    <p class="loginTitle">Login</p>
+    <div class="center-button">
+        <div class="button-background"></div> <!-- Rectangle background -->
+        <a href="{{ url_for('patient_login') }}" class="button">Patient</a>
+        <a href="{{ url_for('clinician_dashboard') }}" class="button">Practitioner</a>
+    </div>
+        
+    <div class="spacer"></div>
+    <div class="bar"></div>
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
+{% endblock %}
