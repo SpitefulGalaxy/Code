@@ -1,7 +1,10 @@
+import os
 from config import Config
 from flask import Flask, jsonify, render_template, request
 
-app = Flask(__name__)
+template_dir = os.path.abspath(os.path.dirname(__file__))
+template_dir = os.path.join(template_dir, 'templates')
+app = Flask(__name__, template_folder=template_dir)
 app.config.from_object(Config)
 
 @app.route('/')
