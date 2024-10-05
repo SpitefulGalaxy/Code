@@ -1,10 +1,8 @@
 import os
 from config import Config
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request, jsonify
 
-template_dir = os.path.abspath(os.path.dirname(__file__))
-template_dir = os.path.join(template_dir, 'templates')
-app = Flask(__name__, template_folder=template_dir)
+app = Flask(__name__)
 app.config.from_object(Config)
 
 @app.route('/')
@@ -13,6 +11,7 @@ def index():
 
 @app.route('/software')
 def software():
+
     return render_template('software.html')
 
 @app.route('/device-guide')
@@ -35,5 +34,8 @@ def clinician_dashboard():
 def patient_dashboard():
     return render_template('patient_dashboard.html')
 
+
 if __name__ == '__main__':
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Template folder: {app.template_folder}")
     app.run(debug=True)
